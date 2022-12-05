@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CompStore.Models.Laptop>
+
+@{
+    ViewData["Title"] = "Laptop";
+}
+
+@*<h1>Laptop</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LaptopName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelProccesor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RamLaptop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LaptopDisplay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LaptopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelProccesor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RamLaptop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LaptopDisplay)
+                </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    </table>*@
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                @foreach (var item in Model){
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Imglink)" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder"> @Html.DisplayFor(modelItem => item.LaptopName)</h5>
+                                <p class=" fw-bolder"> @Html.DisplayFor(modelItem => item.CompanyName) </p>
+                                <!-- Product price-->
+                                @* @Html.DisplayFor(modelItem =>*@ <h5 class="fw-bolder">@item.Price.ToString("# USD") </h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-area="" asp-controller="Ordercs" asp-action="Create">Buy</a></div>
+                            <br/>
+                            <div class="text-center"><a class=" btn btn-outline-dark mt-auto" asp-area="" asp-controller="Laptops" asp-action="Details" asp-route-id="@item.Id">Details</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                }
+            
+        </div>
+    </div>
+</section>
